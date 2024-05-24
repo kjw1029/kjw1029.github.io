@@ -4,7 +4,6 @@ author: Jaeuk
 date: 2024-05-08
 category: Javascrpit
 layout: post
-configuration in `_config.yml`:
 
 ---
 first class citizen    
@@ -24,7 +23,7 @@ const result = words.filter(word => word.length > 6); // word => word.length > 6
 ```
 
 
-### 함수 만들기
+함수 만들기
 ```javascript
 words = [`spray`, `limit`, `elite`, `exuberant`, `destruction`, `present`];
 function callback(element){
@@ -210,4 +209,22 @@ run2().then(function() {
 });
 ```
 
+정규표현식
+-------------
+추출, 치환, 값 찾기
+```javascript
+var pattern = /a/;
+var pattern = new RegExp('a');
 
+var pattern = /a./; //.은 하나의 문자
+
+pattern.exec('abcd'); // output: ["ab"];
+
+pattern.test('abcd'); // true
+pattern.test('bcd'); // false
+
+var str = "abcdf";
+str.match(pattern); // output: ["ab"];
+
+str.replace(pattern, 'AB'); // str = "ABcdf";
+```
