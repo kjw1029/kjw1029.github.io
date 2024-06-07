@@ -6,9 +6,11 @@ category: Javascrpit
 layout: post
 
 ---
-first class citizen    
-브라우저 웹서버 페이지 리로드 없이 자바스크립트 이용해서 서로 통신 = ajax
-
+first class citizen 변수, 매개변수, 리턴값    
+브라우저 웹서버 페이지 리로드 없이 자바스크립트 이용해서 서로 통신 = ajax   
+정의될 때 전역변수 사용(정적 유효범위)   
+function에서만 지역변수   
+함수도 객체(값이 될 수 있다)
 
 CallbackFunction
 -------------
@@ -209,22 +211,56 @@ run2().then(function() {
 });
 ```
 
-정규표현식
+closure
 -------------
-추출, 치환, 값 찾기
+내부함수는 외부함수의 지역변수에 접근 할 수 있는데 외부함수의 실행이 끝나서 외부함수가 소멸된 이후에도 내부함수가 외부함수의 변수에 접근 할 수 있다. 이러한 메커니즘을 클로저라고 한다.
+
 ```javascript
-var pattern = /a/;
-var pattern = new RegExp('a');
+function outter() {
+    var title = 'coding everybody';
+    return function() {
+        alert(title);
+    }
+};
+var inner = outter();
+inner();
+```
+ex)
+```javascript
+function factory movie(title) {
+    return {
+        get_title : function() {
+            return title;
+        },
+        set_title : function(_title) {
+            title = _title;
+        }
+    }
+};
+ghost = factory_movie('Ghost in the shell');
+matrix = factory_moive('matrix');
 
-var pattern = /a./; //.은 하나의 문자
+```
 
-pattern.exec('abcd'); // output: ["ab"];
+agument
+-------------
 
-pattern.test('abcd'); // true
-pattern.test('bcd'); // false
+상속
+-------------
+```javascript
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.name = null;
+Person.prototype.introduce = function() {
+    return 'My name is ' + this.name;
+}
 
-var str = "abcdf";
-str.match(pattern); // output: ["ab"];
+function Programmer(name) {
+    this.name = name;
+}
+Programmer.prototype = new Person();
 
-str.replace(pattern, 'AB'); // str = "ABcdf";
+var p1 = new Programmer('egoing');
+document.write(p1.introduce() + "<br />");
 ```
