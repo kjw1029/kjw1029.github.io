@@ -264,3 +264,4 @@ Programmer.prototype = new Person();
 var p1 = new Programmer('egoing');
 document.write(p1.introduce() + "<br />");
 ```
+
